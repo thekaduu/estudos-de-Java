@@ -1,0 +1,28 @@
+package br.com.estudos.finances.test;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import br.com.estudos.finances.model.Account;
+
+public class AccountTest {
+
+	public static void main(String[] args) {
+		Account account = new Account();
+		account.setHolder("Carlos Eduardo Lima Braz");
+		account.setBank("Itau");
+		account.setAgency("9088");
+		account.setNumber("09175-7");
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("finances");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(account);
+		entityManager.getTransaction().commit();
+				
+
+	}
+
+}
